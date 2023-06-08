@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<robot name="drone" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find drone_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find drone_description)/urdf/drone.trans" />
+<xacro:include filename="$(find drone_description)/urdf/drone.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="6.895992337736006e-15 -1.8291756864021236e-17 0.02409456447376257" rpy="0 0 0"/>
+    <mass value="7.806285051777077"/>
+    <inertia ixx="0.054139" iyy="0.054139" izz="0.102715" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://drone_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://drone_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Link_0_v2_1">
+  <inertial>
+    <origin xyz="1.0634307645973735e-09 6.484291401404392e-09 0.0020906954113535936" rpy="0 0 0"/>
+    <mass value="0.04286870008292693"/>
+    <inertia ixx="9.8e-05" iyy="1e-06" izz="9.9e-05" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.0 -0.045" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://drone_description/meshes/Link_0_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.0 -0.045" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://drone_description/meshes/Link_0_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 1" type="continuous">
+  <origin xyz="0.0 0.0 0.045" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="Link_0_v2_1"/>
+  <axis xyz="0.0 0.0 1.0"/>
+</joint>
+
+</robot>
